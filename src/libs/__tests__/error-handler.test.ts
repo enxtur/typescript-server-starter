@@ -17,7 +17,7 @@ describe("libs/errorHandler", () => {
     const next = jest.fn();
     errorHandler(err, req, res, next);
     expect(res.status).toHaveBeenCalledWith(400);
-    expect(res.json).toHaveBeenCalledWith({messages: ["Validation error"]});
+    expect(res.json).toHaveBeenCalledWith({ message: "Validation error" });
   });
   it("should return a 404 status code for a NotfoundError", () => {
     const err = new NotfoundError("Not found");
