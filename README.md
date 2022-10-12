@@ -1,6 +1,6 @@
 # Boilerplate and Starter for Typescript, Node.js server
 
-🚀 Boilerplate and Starter for Node.js and TypeScript ⚡️ Made with developer experience first: TypeScript, ESLint, Prettier, Jest, Testing Library.
+🚀 Boilerplate and Starter for Rust and actix-web, Testing.
 
 Clone this project and use it to create your own backend project.
 
@@ -8,11 +8,8 @@ Clone this project and use it to create your own backend project.
 
 Developer experience first:
 
-- Type checking [TypeScript](https://www.typescriptlang.org)
-- Strict Mode for TypeScript
-- Linter with [ESLint](https://eslint.org)
-- Code Formatter with [Prettier](https://prettier.io)
-- Unit and Integration testing with Jest
+- actix-web
+- Unit and Integration testing
 
 ### Philosophy
 
@@ -21,36 +18,28 @@ Developer experience first:
 
 ### Requirements
 
-- Node.js 14+ and npm
+- Rust 1.64.0+
 
 ### Getting started
 
 Run the following command on your local environment:
 
 ```shell
-git clone --depth=1 https://github.com/enxtur/typescript-server-starter.git my-project-name
+git clone --depth=1 https://github.com/enxtur/actix-server-starter.git my-project-name
 cd my-project-name
-npm install
+cargo build
 ```
 
 Then, you can start locally in development mode
 
 ```shell
-npm start
-```
-### Deploy to production
-
-You can see the results locally in production mode with:
-
-```shell
-$ npm run build
-$ node build/index.js
+cargoo run
 ```
 
 ### Testing
 
 ```shell
-$ npm run test
+$ cargo test
 ```
 ### Contributions
 
