@@ -1,5 +1,5 @@
 import { Application } from "express";
-import { App } from "../core";
+import { App } from "../app";
 import mongoose from "mongoose";
 import { User, UserDocument } from "../models/User";
 import jwt from "jsonwebtoken";

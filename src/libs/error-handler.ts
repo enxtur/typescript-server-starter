@@ -1,9 +1,17 @@
 import { NextFunction, Request, Response } from "express";
+import { ValidationErrorItem } from "joi";
 
 export class ValidationError extends Error {
-  constructor (message: string) {
-    super(message);
+  details?: ValidationErrorItem[];
+  constructor (message: string | ValidationErrorItem[]) {
+    if (typeof message === "string") {
+      super(message);
+    } else {
+      super("ValidationError");
+      this.details = message;
+    }
     this.name = "ValidationError";
+    
   }
 }
 export class NotfoundError extends Error {
@@ -22,7 +30,10 @@ export class UnauthorizedError extends Error {
 
 export function errorHandler (err: Error, req: Request, res: Response, next: NextFunction) {
   if (err instanceof ValidationError) {
-    return res.status(400).json({ message: err.message });
+    if (err.details) {
+      res.status(400).json({ messages: err.details });
+    }
+    return res.status(400).json({ messages: [err.message] });
   }
   if (err instanceof NotfoundError) {
     return res.status(404).json({ message: err.message });
