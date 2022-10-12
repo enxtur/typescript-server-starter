@@ -13,7 +13,6 @@ Developer experience first:
 - Linter with [ESLint](https://eslint.org)
 - Code Formatter with [Prettier](https://prettier.io)
 - Unit and Integration testing with Jest
-- Maximize lighthouse score
 
 ### Philosophy
 
