@@ -1,13 +1,13 @@
-import express from "express";
-import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
-import morgan from "morgan";
+import cookieParser from "cookie-parser";
+import express from "express";
 import session from "express-session";
-import { accessControl } from "./headers";
-import config from "../config";
-import { router } from "../routes";
-import { userId } from "../middlewares/userId";
-import { errorHandler } from "../libs/error-handler";
+import morgan from "morgan";
+import config from "./config";
+import { errorHandler } from "./libs/error-handler";
+import { accessControl } from "./middlewares/access-control";
+import { userId } from "./middlewares/user-id";
+import { router } from "./routes";
 
 export const App = async () => {
   const app = express();

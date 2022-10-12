@@ -1,4 +1,4 @@
-import { configure } from "../libs/configure";
+import { configure } from "./libs/configure";
 
 interface Config {
   server: {

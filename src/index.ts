@@ -1,6 +1,6 @@
 import config from "./config";
 import { Server } from "http";
-import { App } from "./core";
+import { App } from "./app";
 import mongoose from "mongoose";
 
 (async () => {
