@@ -16,7 +16,7 @@ describe("POST /app/auth", () => {
     await request(mock.app).post("/app/auth")
       .send({ email: "asd1", password: "asd", name: "asd" })
       .expect(400)
-      .expect({ message: "Email in use" });
+      .expect({ messages: ["Email in use"] });
   });
 });
 
