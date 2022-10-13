@@ -8,8 +8,8 @@ import { validate } from "../../middlewares/validator";
 import { User } from "../../models/User";
 
 const schema = joi.object({
-  email   : joi.string().required(),
-  password: joi.string().required(),
+  email   : joi.string().email().required(),
+  password: joi.string().min(4).required(),
 });
 
 export const login = Router();
