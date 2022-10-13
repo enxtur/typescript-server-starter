@@ -1,13 +1,15 @@
 import { Request, Response, Router } from "express";
 import joi from "joi";
+import jwt from "jsonwebtoken";
+import config from "../../config";
 import { ValidationError } from "../../libs/error-handler";
 import { catcher } from "../../middlewares/catcher";
 import { validate } from "../../middlewares/validator";
 import { User } from "../../models/User";
 
 const schema = joi.object({
-  email   : joi.string().required(),
-  password: joi.string().required(),
+  email   : joi.string().email().required(),
+  password: joi.string().min(4).alphanum().required(),
   name    : joi.string().required(),
 });
 
@@ -25,6 +27,6 @@ create.post("/", validate(schema), catcher(async (req: Request, res: Response) =
   
   const user = User.build({ email, password, name });
   await user.save();
-
-  res.json(user);
+  const accessToken = jwt.sign({ _id: user.id }, config.jwt.apiSecret);
+  res.status(201).json({ accessToken });
 }));

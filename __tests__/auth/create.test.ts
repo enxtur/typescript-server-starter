@@ -9,12 +9,33 @@ beforeAll(async () => {
 });
 
 describe("POST /app/auth", () => {
-  it("should return 400", () => request(mock.app) .post("/app/auth").expect(400));
-  it("should return 200", () => request(mock.app).post("/app/auth").send({ email: "asd", password: "asd", name: "asd" }).expect(200));
+  it("should return 400", () =>
+    request(mock.app).post("/app/auth").expect(400));
+  it("should return 200", () =>
+    request(mock.app)
+      .post("/app/auth")
+      .send({
+        email   : "authcreate1@mail.com",
+        password: "pass",
+        name    : "test user",
+      })
+      .expect(201));
   it("should return 400", async () => {
-    await request(mock.app).post("/app/auth").send({ email: "asd1", password: "asd", name: "asd" }).expect(200);
-    await request(mock.app).post("/app/auth")
-      .send({ email: "asd1", password: "asd", name: "asd" })
+    await request(mock.app)
+      .post("/app/auth")
+      .send({
+        email   : "authcreate2@mail.com",
+        password: "pass",
+        name    : "test user 2",
+      })
+      .expect(201);
+    await request(mock.app)
+      .post("/app/auth")
+      .send({
+        email   : "authcreate2@mail.com",
+        password: "pass",
+        name    : "test user 2",
+      })
       .expect(400)
       .expect({ messages: ["Email in use"] });
   });
