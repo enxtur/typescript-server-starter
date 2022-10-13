@@ -19,7 +19,7 @@ updatePassword.put("/password", authorization, user, validate(schema), catcher(a
   }
 
   const password: string = req.body.password;
-  if (req.user.validatePassword(password)) {
+  if (!req.user.validatePassword(password)) {
     throw new ValidationError("Invalid password");
   }
   

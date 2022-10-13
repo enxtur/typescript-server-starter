@@ -13,7 +13,7 @@ describe("PUT /app/auth/password", () => {
     await request(mock.app)
       .put("/app/auth/password")
       .set("Authorization", `Bearer ${mock.accessTokens[0]}`)
-      .send({ password: "asd" })
+      .send({ password: "password", newPassword: "newPassword" })
       .expect(200)
       .expect({});
   });
