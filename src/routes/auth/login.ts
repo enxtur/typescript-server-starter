@@ -8,8 +8,8 @@ import { validate } from "../../middlewares/validator";
 import { User } from "../../models/User";
 
 const schema = joi.object({
-  email   : joi.string().required(),
-  password: joi.string().required(),
+  email   : joi.string().email().required(),
+  password: joi.string().min(4).required(),
 });
 
 export const login = Router();
@@ -27,6 +27,6 @@ login.post("/login", validate(schema), catcher(async (req: Request, res: Respons
     throw new ValidationError("Email or password is incorrect");
   }
   
-  const encoded = jwt.sign({ userId: user.id }, config.jwt.apiSecret);
+  const encoded = jwt.sign({ _id: user.id }, config.jwt.apiSecret);
   res.json({ accessToken: encoded });
 }));

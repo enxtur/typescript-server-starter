@@ -19,10 +19,15 @@ describe("GET /app/users/:id", () => {
   it("should return 200", async () => {
     const createResponse = await request(mock.app)
       .post("/app/auth")
-      .send({email: "usercreate2@email.mn", password: "123456", name: "usercreate2"});
+      .send({email: "usercreate3@mail.com", password: "pass", name: "test user"})
+      .expect(201);
+    const meResponse = await request(mock.app)
+      .get("/app/auth/me")
+      .set("Authorization", `Bearer ${createResponse.body.accessToken}`)
+      .expect(200);
 
     await request(mock.app)
-      .get(`/app/users/${createResponse.body._id}`)
+      .get(`/app/users/${meResponse.body._id}`)
       .set("Authorization", `Bearer ${mock.accessTokens[0]}`)
       .expect(200);
   });

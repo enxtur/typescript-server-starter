@@ -25,8 +25,7 @@ export async function init (opts: InitOptions): Promise<Mock> {
       users.push(await User.build({ email: `mockuser${i}@email.mn`, name: "mock user", password: "password" }).save());
     }));
   }
-  // console.log("users",users);
-  const accessTokens = users.map(user=> jwt.sign({ _id: user._id }, config.jwt.apiSecret));
+  const accessTokens = users.map(user=> jwt.sign({ _id: user.id }, config.jwt.apiSecret));
 
   return {
     app,

@@ -10,10 +10,13 @@ beforeAll(async () => {
 
 describe("GET /app/auth/me", () => {
   it("should return 200", async () => {
-    await request(mock.app)
+    const response = await request(mock.app)
       .get("/app/auth/me")
       .set("Authorization", `Bearer ${mock.accessTokens[0]}`)
       .expect(200);
+    expect(response.body).toEqual(
+      expect.objectContaining({ _id: mock.users[0]._id.toString() })
+    );
   });
 });
 
